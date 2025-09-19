@@ -2,3 +2,9 @@
 .godot/
 /android/
 addons/
+icon.svg
+*.import
+.gitattributes
+.editorconfig
+LICENSE.txt
+README.md
