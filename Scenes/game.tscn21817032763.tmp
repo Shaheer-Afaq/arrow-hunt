@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlbof1lajwyxw"]
+
+[ext_resource type="Script" uid="uid://dqftytuun8ayy" path="res://Scripts/rectangle.gd" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://b5aufv2n2lq6m" path="res://Scripts/game.gd" id="1_qxrlw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycv0a"]
+size = Vector2(464, 8)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ycv0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2poj3"]
+size = Vector2(16, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ebmjs"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_qxrlw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(5.72, 0.279999)
+zoom = Vector2(2, 2)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_ycv0a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(3.8147e-06, -2.38419e-07)
+scale = Vector2(464, -9.5)
+texture = SubResource("CanvasTexture_ycv0a")
+
+[node name="Rectangle" type="RigidBody2D" parent="."]
+position = Vector2(0, 104)
+rotation = -0.523599
+script = ExtResource("1_ebmjs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rectangle"]
+modulate = Color(0.643751, 0.270715, 0.340572, 1)
+rotation = 0.523599
+shape = SubResource("RectangleShape2D_2poj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rectangle"]
+modulate = Color(0.931626, 0.788517, 0.810411, 1)
+position = Vector2(-3.8743e-07, -2.08616e-07)
+rotation = 0.523599
+scale = Vector2(14, 32)
+texture = SubResource("CanvasTexture_ebmjs")
