@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=3 uid="uid://bm4p3uq5rp50k"]
+
+[ext_resource type="Script" uid="uid://b0pb8chsn0mss" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://del225d3ed6k6" path="res://Assets/Sprites/Archery/Bow.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://ddwxcnc73ls8n" path="res://Assets/Sprites/Archery/idle.png" id="3_6t5aa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t5aa"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgqql"]
+bg_color = Color(0.443049, 0.786424, 0.215828, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(108, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usbl8"]
+animations = []
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(0, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(540, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(0, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(540, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(0, 0, 540, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1ek2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkybt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smsa")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 12
+floor_stop_on_slope = false
+script = ExtResource("1_cvnsp")
+
+[node name="PowerBar" type="ProgressBar" parent="."]
+offset_left = -80.0
+offset_top = -224.0
+offset_right = 80.0
+offset_bottom = -197.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6t5aa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vgqql")
+step = 1.0
+value = 71.0
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 22)
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_usbl8")
+animation = &""
+
+[node name="Bow" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.86102e-06, 0)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_f1ek2")
+animation = &"charge"
+frame_progress = 0.226698
+offset = Vector2(-57.52, 20.345)

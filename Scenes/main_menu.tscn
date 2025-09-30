@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://p5btbvspk3jm"]
 
 [ext_resource type="Texture2D" uid="uid://cl5t4yta3ar3s" path="res://Assets/Sprites/background.jpg" id="1_1ehe0"]
-[ext_resource type="FontFile" uid="uid://buear435a512t" path="res://Assets/fonts/PixelOperator8.ttf" id="1_28flt"]
-[ext_resource type="FontFile" uid="uid://ccvlpb2vplvoe" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_ce3w2"]
+[ext_resource type="Script" uid="uid://xdhlnjcu1xmq" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
+[ext_resource type="FontFile" uid="uid://bccw2m0kgwvl1" path="res://Assets/fonts/Realwood Regular.otf" id="2_48xlc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n45e2"]
 texture = ExtResource("1_1ehe0")
@@ -44,6 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ce3w2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -66,33 +67,30 @@ offset_top = -47.0
 offset_right = 556.0
 offset_bottom = 49.0
 grow_horizontal = 2
-scale = Vector2(0.88, 1)
+scale = Vector2(0.882547, 0.995276)
 theme_override_colors/font_color = Color(0.792157, 0.431373, 0.215686, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 20
 theme_override_constants/shadow_outline_size = 10
-theme_override_fonts/font = ExtResource("3_ce3w2")
-theme_override_font_sizes/font_size = 96
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 318
 text = "Archer Hunt"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(360, 240)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -4.0
-offset_right = 150.0
-offset_bottom = 196.0
+anchors_preset = -1
+anchor_top = 0.007
+anchor_bottom = 0.007
+offset_left = 600.0
+offset_top = 483.44
+offset_right = 960.0
+offset_bottom = 723.44
 grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.00332, 1.02285)
+grow_vertical = 0
+scale = Vector2(2, 2.032)
 theme_override_constants/separation = 8
 
 [node name="Button" type="Button" parent="VBoxContainer"]
@@ -111,8 +109,8 @@ theme_override_colors/font_outline_color = Color(0.27451, 0.129412, 0.0352941, 1
 theme_override_colors/font_color = Color(0.273345, 0.127853, 0.0362668, 1)
 theme_override_colors/font_focus_color = Color(0.27451, 0.129412, 0.0352941, 1)
 theme_override_colors/font_pressed_color = Color(0.27451, 0.129412, 0.0352941, 1)
-theme_override_fonts/font = ExtResource("1_28flt")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 54
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1ehe0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
@@ -135,8 +133,8 @@ theme_override_colors/font_outline_color = Color(0.27451, 0.129412, 0.0352941, 1
 theme_override_colors/font_color = Color(0.273345, 0.127853, 0.0362668, 1)
 theme_override_colors/font_focus_color = Color(0.27451, 0.129412, 0.0352941, 1)
 theme_override_colors/font_pressed_color = Color(0.27451, 0.129412, 0.0352941, 1)
-theme_override_fonts/font = ExtResource("1_28flt")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 54
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1ehe0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
@@ -159,10 +157,14 @@ theme_override_colors/font_outline_color = Color(0.27451, 0.129412, 0.0352941, 1
 theme_override_colors/font_color = Color(0.273345, 0.127853, 0.0362668, 1)
 theme_override_colors/font_focus_color = Color(0.27451, 0.129412, 0.0352941, 1)
 theme_override_colors/font_pressed_color = Color(0.27451, 0.129412, 0.0352941, 1)
-theme_override_fonts/font = ExtResource("1_28flt")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 54
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1ehe0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n45e2")
 text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]

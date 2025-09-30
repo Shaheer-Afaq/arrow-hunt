@@ -1,9 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctf3mobd4kr4x"]
+[gd_scene load_steps=4 format=3 uid="uid://81h8tc37ewuy"]
 
-[ext_resource type="PackedScene" uid="uid://p5btbvspk3jm" path="res://Scenes/main_menu.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://c6nuhatirlkp1" path="res://Scripts/game.gd" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://cl5t4yta3ar3s" path="res://Assets/Sprites/background.jpg" id="2_qxrlw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
+distance = -1064.0
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ebmjs")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2063.0
+offset_bottom = 1160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.930536, 0.931046)
+texture = ExtResource("2_qxrlw")
 
-[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_ebmjs")]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_qxrlw")

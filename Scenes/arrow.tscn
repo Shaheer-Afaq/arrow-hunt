@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://81sf37ku2h8k"]
+
+[ext_resource type="Script" uid="uid://b7fhcp2byt8bi" path="res://Scripts/arrow.gd" id="1_h5x2m"]
+[ext_resource type="Texture2D" uid="uid://boq5i2rlx1rvu" path="res://Assets/Sprites/Archery/arrow1.png" id="2_h5x2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u0bd"]
+size = Vector2(77.1429, 2)
+
+[node name="Arrow" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_h5x2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_h5x2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 2
+position = Vector2(1.42857, 0)
+shape = SubResource("RectangleShape2D_2u0bd")
