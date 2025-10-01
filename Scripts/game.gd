@@ -7,4 +7,10 @@ func _ready() -> void:
 	add_child(player)
 
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_pressed("spawn"):
+		var target = Context.Target.instantiate()
+		target.position = Vector2(
+			randi_range(50, get_viewport().size.x-50), 
+			randi_range(50, get_viewport().size.y-50))
+		add_child(target)
+		

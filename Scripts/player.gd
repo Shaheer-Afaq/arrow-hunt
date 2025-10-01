@@ -6,6 +6,7 @@ const GRAVITY = 980
 const FRICTION = 0.93
 const MAX_POWER = 2500
 const MIN_POWER = 415
+const CHARGE_SPEED = 50
 var power: int = 0
 
 func _ready() -> void:
@@ -39,7 +40,7 @@ func bow_arrow():
 	if Input.is_action_pressed("shoot"):
 		$PowerBar.visible = true
 		#power = $Bow.position.distance_to(get_local_mouse_position())
-		power += 40
+		power += CHARGE_SPEED
 		if power >= 2500: power = 2500
 		$PowerBar.value = power
 		$Bow.animation = "charge"

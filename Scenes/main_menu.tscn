@@ -139,7 +139,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1ehe0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n45e2")
-text = "Options"
+text = "Mode: Timer"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -166,5 +166,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_n45e2")
 text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_mode_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]

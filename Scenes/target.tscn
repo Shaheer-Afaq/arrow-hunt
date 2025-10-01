@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvgppv3m5tugh"]
+
+[ext_resource type="Script" uid="uid://b46er601mxjqj" path="res://Scripts/target.gd" id="1_ls7vh"]
+[ext_resource type="Texture2D" uid="uid://d4hc81pvoiypu" path="res://Assets/Sprites/coin.png" id="2_2228f"]
+[ext_resource type="Texture2D" uid="uid://c5oyoljtigqpc" path="res://Assets/Sprites/balloon.png" id="3_2228f"]
+[ext_resource type="AudioStream" uid="uid://ju862ax48jhs" path="res://Assets/audio/pop.mp3" id="4_ww0yb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2228f"]
+radius = 45.0111
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2228f"]
+radius = 60.0
+height = 138.0
+
+[node name="target" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_ls7vh")
+
+[node name="coin" type="Sprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_2228f")
+
+[node name="coinhitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_2228f")
+
+[node name="balloon" type="Sprite2D" parent="."]
+position = Vector2(0, -44)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_2228f")
+offset = Vector2(0, -176.42)
+
+[node name="balloonarea" type="Area2D" parent="."]
+
+[node name="hitbox" type="CollisionShape2D" parent="balloonarea"]
+position = Vector2(-1, -175)
+shape = SubResource("CapsuleShape2D_2228f")
+
+[node name="burst" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ww0yb")
+
+[connection signal="body_entered" from="balloonarea" to="." method="on_body_entered"]

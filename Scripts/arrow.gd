@@ -7,6 +7,7 @@ const spawn_offset: int = 70
 var collided: bool
 
 func _ready():
+	add_to_group("arrows")
 	var rotated_vector = Vector2.RIGHT.rotated(angle + PI)
 	position += rotated_vector * spawn_offset
 	velocity = rotated_vector * power
