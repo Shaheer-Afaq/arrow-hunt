@@ -6,8 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2u0bd"]
 size = Vector2(77.1429, 2)
 
-[node name="Arrow" type="CharacterBody2D"]
-collision_mask = 4
+[node name="Arrow" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 29
+mass = 3.0
+gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(25, 0)
+contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("1_h5x2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,3 +27,5 @@ texture = ExtResource("2_h5x2m")
 texture_filter = 2
 position = Vector2(1.42857, 0)
 shape = SubResource("RectangleShape2D_2u0bd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

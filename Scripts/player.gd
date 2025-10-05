@@ -4,7 +4,7 @@ const ACCELERATION = 50.0
 const JUMP_VELOCITY = -1000.0
 const GRAVITY = 980
 const FRICTION = 0.93
-const MAX_POWER = 2500
+const MAX_POWER = 3000
 const MIN_POWER = 415
 const CHARGE_SPEED = 50
 var power: int = 0
@@ -21,17 +21,18 @@ func _process(delta: float) -> void:
 		
 	
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta * 4
-	elif Input.is_action_just_pressed("jump"):
-		velocity.y = JUMP_VELOCITY
-
-	var direction := Input.get_axis("left", "right")
+	#if not is_on_floor():
+		#velocity.y += GRAVITY * delta * 4
+	#elif Input.is_action_just_pressed("jump"):
+		#velocity.y = JUMP_VELOCITY
+#
+	#var direction := Input.get_axis("left", "right")
 	#if abs(velocity.x) < 200 :
-	velocity.x += direction * ACCELERATION
-	velocity.x *= FRICTION
-
-	move_and_slide()
+	#velocity.x += direction * ACCELERATION
+	#velocity.x *= FRICTION
+#
+	#move_and_slide()
+	pass
 
 func bow_arrow():
 	$Bow.look_at(get_global_mouse_position())
@@ -41,7 +42,7 @@ func bow_arrow():
 		$PowerBar.visible = true
 		#power = $Bow.position.distance_to(get_local_mouse_position())
 		power += CHARGE_SPEED
-		if power >= 2500: power = 2500
+		if power >= MAX_POWER: power = MAX_POWER
 		$PowerBar.value = power
 		$Bow.animation = "charge"
 		$Bow.frame = round(remap(power, MIN_POWER, MAX_POWER, 1, 3))
@@ -51,6 +52,7 @@ func bow_arrow():
 		$Bow.frame = 0
 		var arrow = Context.Arrow.instantiate()
 		arrow.position = position
+		arrow.position.y += $Bow.position.y + $Bow.offset.y + 10
 		arrow.angle = $Bow.rotation
 		arrow.power = power
 		get_parent().add_child(arrow)

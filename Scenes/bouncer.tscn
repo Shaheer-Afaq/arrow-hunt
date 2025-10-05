@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkbsp1u102bav"]
+
+[ext_resource type="Script" uid="uid://331agfeyt0n7" path="res://Scripts/bouncer.gd" id="1_ktstb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ktstb"]
+friction = 0.4
+bounce = 0.9
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnsp3"]
+size = Vector2(32, 80)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cnsp3"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_ktstb")
+script = ExtResource("1_ktstb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cnsp3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.21863, 0.709529, 0.355491, 1)
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 16.0
+offset_bottom = 40.0
+texture = SubResource("CanvasTexture_cnsp3")

@@ -1,10 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://81h8tc37ewuy"]
+[gd_scene load_steps=13 format=3 uid="uid://81h8tc37ewuy"]
 
 [ext_resource type="Script" uid="uid://c6nuhatirlkp1" path="res://Scripts/game.gd" id="1_ebmjs"]
 [ext_resource type="Texture2D" uid="uid://cl5t4yta3ar3s" path="res://Assets/Sprites/background.jpg" id="2_qxrlw"]
+[ext_resource type="FontFile" uid="uid://bccw2m0kgwvl1" path="res://Assets/fonts/Realwood Regular.otf" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://c7e1v11rwhd51" path="res://Scenes/static_block.tscn" id="5_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bm4p3uq5rp50k" path="res://Scenes/player.tscn" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://bmp7p3bc3wdr6" path="res://Scenes/block.tscn" id="6_v158k"]
+[ext_resource type="PackedScene" uid="uid://bvgppv3m5tugh" path="res://Scenes/target.tscn" id="7_h4fw4"]
+[ext_resource type="PackedScene" uid="uid://dkbsp1u102bav" path="res://Scenes/bouncer.tscn" id="8_v158k"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
-distance = -1064.0
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dryh"]
+distance = -1080.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wowpa"]
+normal = Vector2(-1, 0)
+distance = -1920.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrm1d"]
+normal = Vector2(0, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
@@ -20,9 +36,95 @@ grow_vertical = 2
 scale = Vector2(0.930536, 0.931046)
 texture = ExtResource("2_qxrlw")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 8
+[node name="Border" type="StaticBody2D" parent="."]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
 shape = SubResource("WorldBoundaryShape2D_qxrlw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_3dryh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_wowpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_wrm1d")
+
+[node name="Player" parent="." instance=ExtResource("5_wowpa")]
+position = Vector2(936, 1008)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 696.0
+offset_top = 512.0
+offset_right = 1205.0
+offset_bottom = 644.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.261356, 0.408084, 0.336036, 1)
+theme_override_fonts/font = ExtResource("4_3dryh")
+theme_override_font_sizes/font_size = 46
+text = "Press Enter To Spawn Balloon
+Hold RMB/LMB to charge 
+Release to shoot"
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 800.0
+offset_top = 664.0
+offset_right = 1052.0
+offset_bottom = 706.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.261356, 0.408084, 0.336036, 1)
+theme_override_fonts/font = ExtResource("4_3dryh")
+theme_override_font_sizes/font_size = 46
+text = "(Experimental)"
+
+[node name="RigidBody2D" parent="." instance=ExtResource("5_1l0tm")]
+position = Vector2(264, 568)
+scale = Vector2(1, 4.72)
+
+[node name="RigidBody2D2" parent="." instance=ExtResource("5_1l0tm")]
+position = Vector2(256, 1043)
+rotation = 1.83259
+scale = Vector2(1, 3.97277)
+
+[node name="RigidBody2D4" parent="." instance=ExtResource("5_1l0tm")]
+position = Vector2(840, 392)
+rotation = 1.83259
+scale = Vector2(1, 4.72)
+
+[node name="RigidBody2D3" parent="." instance=ExtResource("6_v158k")]
+position = Vector2(320, 936)
+rotation = -1.83259
+
+[node name="target" parent="." instance=ExtResource("7_h4fw4")]
+position = Vector2(136, 344)
+
+[node name="target3" parent="." instance=ExtResource("7_h4fw4")]
+position = Vector2(1496, 784)
+
+[node name="target4" parent="." instance=ExtResource("7_h4fw4")]
+position = Vector2(1640, 784)
+
+[node name="target2" parent="." instance=ExtResource("7_h4fw4")]
+position = Vector2(968, 320)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("8_v158k")]
+position = Vector2(1352, 208)
+scale = Vector2(1, 3.28)
+
+[node name="RigidBody2D5" parent="." instance=ExtResource("6_v158k")]
+position = Vector2(1560, 480)

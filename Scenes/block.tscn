@@ -1,27 +1,49 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmp7p3bc3wdr6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsd7l"]
-size = Vector2(32, 128)
-
 [sub_resource type="Gradient" id="Gradient_fsd7l"]
 offsets = PackedFloat32Array(0.987013, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ejx3s"]
 gradient = SubResource("Gradient_fsd7l")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsd7l"]
+size = Vector2(32, 128)
+
 [node name="RigidBody2D" type="RigidBody2D"]
-collision_layer = 8
-collision_mask = 15
+z_index = 6
+collision_mask = 31
 input_pickable = true
+mass = 10.0
+gravity_scale = 3.0
+linear_damp_mode = 1
+angular_damp_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_fsd7l")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -16.0
-offset_top = -64.0
-offset_right = 117.0
-offset_bottom = 64.0
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -6.34189
+offset_top = -2.91088
+offset_right = 126.658
+offset_bottom = 125.089
+rotation = -1.23046
 scale = Vector2(0.24, 1)
 texture = SubResource("GradientTexture1D_ejx3s")
 expand_mode = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(59.6581, 3.00912)
+rotation = -1.23046
+shape = SubResource("RectangleShape2D_fsd7l")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -3.34189
+offset_top = -32.9109
+offset_right = 129.658
+offset_bottom = 95.0891
+rotation = 1.23046
+scale = Vector2(0.24, 1)
+texture = SubResource("GradientTexture1D_ejx3s")
+expand_mode = 2
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-57.6838, 3.00912)
+rotation = 1.23046
+shape = SubResource("RectangleShape2D_fsd7l")

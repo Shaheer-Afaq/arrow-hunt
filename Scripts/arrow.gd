@@ -1,28 +1,33 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 var power: float
 var angle: float
-const gravity: float = 980
+var collided: bool = false
+var last_position: Vector2 
 const spawn_offset: int = 70
-var collided: bool
+
 
 func _ready():
 	add_to_group("arrows")
 	var rotated_vector = Vector2.RIGHT.rotated(angle + PI)
 	position += rotated_vector * spawn_offset
-	velocity = rotated_vector * power
 	rotation = angle + PI
 	scale *= Context.Global_Scale
+	apply_impulse(rotated_vector * power * 0.8, Vector2.ZERO)
+
+func _physics_process(delta: float) -> void:
+	#if position.distance_to(last_position) < 5:
+		#queue_free()
+			
+	if linear_velocity.length() > 1:
+		rotation = linear_velocity.angle()
+		
 	
-func _process(delta: float) -> void:
-	pass
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	linear_velocity.x = move_toward(linear_velocity.x, 0, abs(linear_velocity.x) * 0.01)
 
-func _physics_process(delta):
-	if collided: queue_free()
-	velocity.y += gravity * delta * 2
-	velocity.x = move_toward(velocity.x, 0, velocity.x * 0.01)
-	rotation = velocity.angle()
 
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		collided = true
+func _on_body_entered(body: Node) -> void:
+	if not body.is_in_group("bouncers"):
+		queue_free()
+		
