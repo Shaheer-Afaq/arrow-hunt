@@ -1,4 +1,4 @@
-#Arrow Hunt
+# Arrow Hunt
 
 An archery game made in godot. Shoot balloons to drop hanging coins!
 
